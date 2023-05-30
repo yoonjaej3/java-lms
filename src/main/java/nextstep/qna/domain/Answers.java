@@ -9,8 +9,6 @@ import java.util.List;
 public class Answers {
     private final List<Answer> answers = new ArrayList<>();
 
-    private final DeleteHistoryList deleteHistoryList = new DeleteHistoryList();
-
     public Answers() {
 
     }
@@ -19,17 +17,17 @@ public class Answers {
         return answers;
     }
 
-    public DeleteHistoryList getDeleteHistoryList() {
-        return deleteHistoryList;
-    }
-
     public void add(Answer answer) {
         answers.add(answer);
     }
 
-    public void delete(NsUser loginUser) throws CannotDeleteException {
+    public DeleteHistories delete(String userId) throws CannotDeleteException {
+        DeleteHistories deleteHistories = new DeleteHistories();
+
         for (Answer answer : answers) {
-            deleteHistoryList.add(answer.delete(loginUser));
+            deleteHistories.add(answer.delete(userId));
         }
+
+        return deleteHistories;
     }
 }
