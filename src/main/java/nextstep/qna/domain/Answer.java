@@ -73,8 +73,8 @@ public class Answer {
         this.question = question;
     }
 
-    public DeleteHistory delete(NsUser loginUser) throws CannotDeleteException {
-        if (!this.isOwner(loginUser)) {
+    public DeleteHistory delete(String userId) throws CannotDeleteException {
+        if (!this.writer.getUserId().equals(userId)) {
             throw new CannotDeleteException("다른 사람이 쓴 답변이 있어 삭제할 수 없습니다.");
         }
         this.deleted = true;
